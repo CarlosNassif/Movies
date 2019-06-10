@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsMovie">
+
+    <TextView
+        android:id="@+id/txt_title_details"
+        android:layout_width="196dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/PosterActDes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/PosterActDes"
+        android:layout_width="144dp"
+        android:layout_height="258dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/DescricaoActDet"
+        android:layout_width="336dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PosterActDes" />
+
+    <TextView
+        android:id="@+id/TempoActDet"
+        android:layout_width="333dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PaisActDet" />
+
+    <TextView
+        android:id="@+id/PaisActDet"
+        android:layout_width="333dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DiretorActDet" />
+
+    <TextView
+        android:id="@+id/DiretorActDet"
+        android:layout_width="333dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescricaoActDet" />
+
+    <Button
+        android:id="@+id/GosteiBtnActDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:onClick="GosteiBtn"
+        android:text="@string/Gostei_Btn"
+        app:layout_constraintEnd_toStartOf="@+id/NaoGosteiBtnActDet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TempoActDet" />
+
+    <Button
+        android:id="@+id/NaoGosteiBtnActDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:onClick="NaoGosteiBtn"
+        android:text="@string/NaoGosteiBtn"
+        app:layout_constraintEnd_toStartOf="@+id/JaAssistiBtnActDet"
+        app:layout_constraintStart_toEndOf="@+id/GosteiBtnActDet"
+        app:layout_constraintTop_toBottomOf="@+id/TempoActDet" />
+
+    <Button
+        android:id="@+id/JaAssistiBtnActDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="4dp"
+        android:onClick="JaAssistiBtn"
+        android:text="@string/JaAssistiBtn"
+        app:layout_constraintEnd_toStartOf="@+id/ComecarAssistirBtnActDet"
+        app:layout_constraintStart_toEndOf="@+id/NaoGosteiBtnActDet"
+        app:layout_constraintTop_toBottomOf="@+id/TempoActDet" />
+
+    <Button
+        android:id="@+id/ComecarAssistirBtnActDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/ComecarAssistirBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/JaAssistiBtnActDet"
+        tools:layout_editor_absoluteY="641dp" />
+</android.support.constraint.ConstraintLayout>

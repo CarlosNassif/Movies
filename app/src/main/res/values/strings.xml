@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="todo">TODO</string>
+    <string name="iron_man">Iron Man</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Gostei_Btn">Gostei</string>
+    <string name="NaoGosteiBtn">Não Gostei</string>
+    <string name="JaAssistiBtn">Já assisti</string>
+    <string name="ComecarAssistirBtn">Ver</string>
+</resources>
