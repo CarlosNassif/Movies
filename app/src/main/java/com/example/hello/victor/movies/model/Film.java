@@ -9,6 +9,34 @@ public class Film implements Serializable {
     private String linkPoster;
     private String plot;
     private String runtime;
+    private String genre;
+    private String director;
+    private String country;
+
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getRuntime() {
         return runtime;

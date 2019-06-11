@@ -26,7 +26,6 @@ public class DetailsMovie extends AppCompatActivity {
     protected TextView nomeFilme, descricao, diretor, pais, tempo;
     protected ImageView poster;
     private Film film;
-    private Film2 film2;
     private boolean assistindo = false;
     public static String ARQ_PREFS;
 
@@ -53,16 +52,15 @@ public class DetailsMovie extends AppCompatActivity {
         configuracoes = getSharedPreferences(ARQ_PREFS, Context.MODE_PRIVATE);
         editor = configuracoes.edit();
 
-        ColetarDadosFilme();
 
-        nomeFilme.setText(film2.getTitle()+" "+ film2.getYear());
-        descricao.setText(film2.getPlot());
-        diretor.setText(film2.getDirector());
-        pais.setText(film2.getCountry());
-        tempo.setText(film2.getRuntime());
+        nomeFilme.setText(film.getTitle()+" "+ film.getYear());
+        descricao.setText(film.getPlot());
+        diretor.setText(film.getDirector());
+        pais.setText(film.getCountry());
+        tempo.setText(film.getRuntime());
 
         try {
-            Bitmap bitmap = new DownloadImage().execute(film2.getPoster()).get();
+            Bitmap bitmap = new DownloadImage().execute(film.getLinkPoster()).get();
             poster.setImageBitmap(bitmap);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -76,15 +74,15 @@ public class DetailsMovie extends AppCompatActivity {
 
         String salvarBD = "";
         try{
-            configuracoes.getString(film2.getImdbId(),salvarBD);
+            configuracoes.getString(film.getImdbId(),salvarBD);
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("String salvarBD GosteiBtn: "+salvarBD);
 
-        salvarBD = "gostei;"+film2.getGenre()+";";
+        salvarBD = "gostei;"+film.getGenre()+";";
 
-        editor.putString(film2.getImdbId(),salvarBD);
+        editor.putString(film.getImdbId(),salvarBD);
 
         Toast.makeText(this, film.getTitle() + " foi marcado como 'gostei'.", Toast.LENGTH_LONG).show();
 
@@ -94,15 +92,15 @@ public class DetailsMovie extends AppCompatActivity {
 
         String salvarBD = "";
         try{
-            configuracoes.getString(film2.getImdbId(),salvarBD);
+            configuracoes.getString(film.getImdbId(),salvarBD);
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("String salvarBD NaoGosteiBtn: "+salvarBD);
 
-        salvarBD = "naogostei;"+film2.getGenre()+";";
+        salvarBD = "naogostei;"+film.getGenre()+";";
 
-        editor.putString(film2.getImdbId(),salvarBD);
+        editor.putString(film.getImdbId(),salvarBD);
 
         Toast.makeText(this, film.getTitle() + " foi marcado como 'não gostei'.", Toast.LENGTH_LONG).show();
 
@@ -113,12 +111,12 @@ public class DetailsMovie extends AppCompatActivity {
         String salvarBD = "";
         try{
 
-            configuracoes.getString(film2.getImdbId(),salvarBD);
+            configuracoes.getString(film.getImdbId(),salvarBD);
             Toast.makeText(this, "Já sabemos disso...", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
 
-            editor.putString(film2.getImdbId(),salvarBD);
+            editor.putString(film.getImdbId(),salvarBD);
             Toast.makeText(this, "Suas recomendações serão atualizadas.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -132,41 +130,7 @@ public class DetailsMovie extends AppCompatActivity {
 
     }
 
-    private void ColetarDadosFilme() {
 
-        String url = "http://www.omdbapi.com/?apikey=13e060ff&i="+film.getImdbId();
-        String stringToJson = null;
-
-        try {
-            stringToJson = new APIRequest().execute(url).get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        try{
-
-            JSONObject jsonObject = new JSONObject(stringToJson);
-
-            film2.setTitle(jsonObject.getString("Title"));
-            film2.setImdbId(jsonObject.getString("imdbID"));
-            film2.setPlot(jsonObject.getString("Plot"));
-            film2.setPoster(jsonObject.getString("Poster"));
-            film2.setYear(jsonObject.getString("Year"));
-            film2.setRuntime(jsonObject.getString("Runtime"));
-            film2.setDirector(jsonObject.getString("Director"));
-            film2.setGenre(jsonObject.getString("Genre"));
-            film2.setCountry(jsonObject.getString("Country"));
-
-
-//            System.out.println(film.getTitle());
-
-        }catch (JSONException jsonE){
-            jsonE.printStackTrace();
-        }
-    }
 
 
 }

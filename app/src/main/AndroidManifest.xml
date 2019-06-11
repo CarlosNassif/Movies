@@ -15,7 +15,8 @@
             android:name="android.app.default.searchable"
             android:value="com.example.hello.victor.movies.MainActivity" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.SEARCH" />

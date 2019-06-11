@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class Film2 implements Serializable {
 
+    private String imdbId;
     private String title;
     private String year;
+    private String poster;
+    private String plot;
     private String runtime;
     private String genre;
     private String director;
-    private String plot;
-    private String poster;
-    private String imdbId;
     private String country;
 
 

@@ -1,6 +1,8 @@
 package com.example.hello.victor.movies;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.SearchView;
 
 import com.example.hello.victor.movies.interfaces.RecyclerInterface;
 import com.example.hello.victor.movies.model.Film;
+import com.example.hello.victor.movies.model.Film2;
 import com.example.hello.victor.movies.services.APIRequest;
 
 import org.json.JSONArray;
@@ -24,8 +27,13 @@ public class MainActivity extends AppCompatActivity  implements RecyclerInterfac
 
     SearchView searchView;
     List<Film> listFilm =  new ArrayList<>();
+    List<Film> listFilmRecomendados = new ArrayList<>();
+
+    SharedPreferences configuracoes;
+    SharedPreferences.Editor editor;
 
     RecyclerView recyclerView;
+    RecyclerView recyclerViewRecomendados;
     LinearLayoutManager linearLayoutManager;
     MeuAdapter meuAdapter;
     public static final String ARQ_PREFS = "MeuArquivoPreferencias";
@@ -43,6 +51,14 @@ public class MainActivity extends AppCompatActivity  implements RecyclerInterfac
         meuAdapter = new MeuAdapter(this,listFilm,this);
         recyclerView.setAdapter(meuAdapter);
 
+        recyclerViewRecomendados = (RecyclerView) findViewById(R.id.RecyclerViewRecomendados);
+        linearLayoutManager  = new LinearLayoutManager(this);
+        recyclerViewRecomendados.setLayoutManager(linearLayoutManager);
+        meuAdapter = new MeuAdapter(this,listFilmRecomendados,this);
+        recyclerViewRecomendados.setAdapter(meuAdapter);
+
+        configuracoes = getSharedPreferences(ARQ_PREFS, Context.MODE_PRIVATE);
+        editor = configuracoes.edit();
 
         searchView = (SearchView) findViewById(R.id.searchable);
         searchView.setQueryHint("Pesquisar filmes");
@@ -73,6 +89,11 @@ public class MainActivity extends AppCompatActivity  implements RecyclerInterfac
             }
         });
 
+    }
+
+    private void addItemListRecomendados() {
+
+        String stringToJson ;
     }
 
     private void addItemList(String stringToJson){
@@ -114,8 +135,10 @@ public class MainActivity extends AppCompatActivity  implements RecyclerInterfac
             film.setYear(jsonObject.getString("Year"));
             film.setPlot(jsonObject.getString("Plot"));
             film.setLinkPoster(jsonObject.getString("Poster"));
-            film.setYear(jsonObject.getString("Year"));
             film.setRuntime(jsonObject.getString("Runtime"));
+            film.setDirector(jsonObject.getString("Director"));
+            film.setGenre(jsonObject.getString("Genre"));
+            film.setCountry(jsonObject.getString("Country"));
 
             listFilm.add(film);
 //            System.out.println(film.getTitle());
@@ -127,14 +150,12 @@ public class MainActivity extends AppCompatActivity  implements RecyclerInterfac
     @Override
     public void onItemClick(Object object) {
         Film film = (Film) object;
-
         Intent send = new Intent(this,DetailsMovie.class);
         send.putExtra("Film",film);
         send.putExtra("MeuArquivoPreferencias", ARQ_PREFS);
         startActivity(send);
 
     }
-
 
 }
 
